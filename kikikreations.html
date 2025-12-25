@@ -3,106 +3,574 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KikiKreations</title>
+    <title>KikiKreations | Conquering the Kitchen</title>
     <style>
+        :root {
+            --ink: #1f2a37;
+            --sand: #f3ede2;
+            --sage: #8a9a5b;
+            --clay: #d7c8b1;
+            --mint: #dfe8d2;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f7f7f7;
-            color: #333;
+            font-family: "Inter", "Segoe UI", Arial, sans-serif;
+            background: radial-gradient(circle at 10% 20%, #f6f0e6 25%, transparent 35%),
+                        radial-gradient(circle at 90% 0%, #e3f0d9 25%, transparent 35%),
+                        #f9f7f3;
+            color: var(--ink);
+            line-height: 1.6;
         }
+
         header {
-            background-color: #e2d8c3;
-            padding: 20px;
-            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(8px);
+            background: rgba(249, 247, 243, 0.9);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
-        nav {
-            margin: 20px;
-            text-align: center;
+
+        .top-bar {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
         }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: var(--mint);
+            color: #3f5235;
+            font-size: 13px;
+        }
+
         nav a {
-            margin: 0 15px;
+            margin-left: 18px;
+            color: var(--ink);
             text-decoration: none;
-            color: #333;
+            font-weight: 600;
+            font-size: 14px;
         }
-        section {
-            padding: 20px;
+
+        nav a:hover {
+            color: var(--sage);
         }
-        footer {
-            background-color: #e2d8c3;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 32px 24px 120px;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            align-items: center;
+            padding: 32px;
+            border-radius: var(--radius);
+            background: linear-gradient(135deg, var(--sand), #eef3e5);
+            box-shadow: var(--shadow);
+        }
+
+        .hero h1 {
+            margin: 0 0 12px;
+            font-size: clamp(28px, 4vw, 40px);
+            line-height: 1.2;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.7);
+            color: #3b4b2e;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--sage);
+            color: var(--white);
+            padding: 12px 18px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(138, 154, 91, 0.35);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 24px rgba(138, 154, 91, 0.42);
+        }
+
+        .hero-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .hero-card {
+            padding: 16px;
+            border-radius: 14px;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        h2 {
+            margin-top: 48px;
+            margin-bottom: 16px;
+            font-size: 24px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 18px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            background: var(--mint);
+            color: #324224;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-top: 12px;
+        }
+
+        .step-num {
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--sage);
+            color: var(--white);
+            font-weight: 800;
+            margin-right: 8px;
+        }
+
+        .upload-area {
+            display: grid;
+            gap: 16px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            margin-top: 12px;
+        }
+
+        .upload {
+            border: 1px dashed #c7d0b8;
+            border-radius: var(--radius);
+            padding: 16px;
+            background: #f7f9f4;
+        }
+
+        .upload input {
             width: 100%;
-            bottom: 0;
+            margin-top: 8px;
         }
-        .beige { color: #d8cfc4; }
-        .sage-green { color: #8a9a5b; }
-        .cream { color: #f5f5dc; }
+
+        .status {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #445;
+        }
+
+        .note-area {
+            width: 100%;
+            min-height: 110px;
+            padding: 12px;
+            border: 1px solid #d7d7d7;
+            border-radius: 12px;
+            font-family: inherit;
+            background: #fbfbfb;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .muted {
+            color: #5d6a59;
+            font-size: 14px;
+        }
+
+        .suggestions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .suggestion {
+            padding: 14px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #ffffff, #f3f6ef);
+            border: 1px solid rgba(0,0,0,0.03);
+            box-shadow: var(--shadow);
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0;
+        }
+
+        .checklist li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 0;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: #eef2e7;
+            color: #3f4a2e;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .footer {
+            margin-top: 48px;
+            text-align: center;
+            font-size: 14px;
+            color: #5c604f;
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>KikiKreations</h1>
+        <div class="top-bar">
+            <div class="logo">
+                <strong>KikiKreations</strong>
+                <span>Day-to-Day</span>
+            </div>
+            <nav>
+                <a href="#kitchen-app">Kitchen AI</a>
+                <a href="#flow">Workflow</a>
+                <a href="#ideas">Ideas</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
     </header>
-    <nav>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#blog">Blog</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    <section id="about">
-        <h2>About</h2>
-        <p>KikiKreations: Where Creativity Meets Professionalism</p>
-        <p>Welcome to KikiKreations! We specialize in designing fun, creative clipart, stationery, planners, journals, and business items. Our mission is to help small businesses streamline their workflow and elevate their professional brand with pre-designed templates and journals. Our designs are crafted to save time while maintaining a professional and stylish appearance. Our color palette includes soothing beige, sage green, and cream, reflecting our commitment to elegance and simplicity.</p>
-    </section>
-    <section id="services">
-        <h2>Services</h2>
-        <p>Our Services: Tailored for Your Success</p>
-        <ul>
-            <li>Digital Products: Pre-designed templates for planners, journals, and business items.</li>
-            <li>Custom Designs: Personalized clipart and stationery to suit your brand's unique identity.</li>
-            <li>Social Media Kits: Ready-to-use posts, brand kits, logos, and business cards.</li>
-            <li>Vision Board Tools: Templates and workbooks to help you design the life you want.</li>
-            <li>Consultations: One-on-one sessions to help you create and implement effective business strategies.</li>
-        </ul>
-    </section>
-    <section id="portfolio">
-        <h2>Portfolio</h2>
-        <p>Our Work: A Showcase of Creativity</p>
-        <p>Explore our diverse portfolio showcasing our latest designs and projects. From bespoke stationery to comprehensive social media kits, our work speaks for itself. Each project is a testament to our dedication to quality and creativity.</p>
-        <ul>
-            <li>Stationery Designs: Elegant and functional designs for everyday use.</li>
-            <li>Brand Boards: Customizable brand boards for healers and small business owners.</li>
-            <li>Vision Board Templates: Inspiring templates to help visualize your goals.</li>
-            <li>Social Media Kits: Comprehensive packages to boost your online presence.</li>
-        </ul>
-    </section>
-    <section id="blog">
-        <h2>Blog</h2>
-        <p>Insights and Inspiration: The KikiKreations Blog</p>
-        <p>Stay updated with our latest tips, tutorials, and insights into the world of design and business strategy. Our blog covers a range of topics to help you stay inspired and informed.</p>
-        <ul>
-            <li>Design Tips: Learn the secrets to creating stunning visuals.</li>
-            <li>Business Strategies: Effective strategies to grow your small business.</li>
-            <li>Customer Stories: Success stories from our satisfied clients.</li>
-            <li>Product Updates: The latest additions to our digital product line.</li>
-        </ul>
-    </section>
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Get in Touch: We'd Love to Hear from You</p>
-        <p>Whether you have a question, need a custom design, or want to learn more about our services, we're here to help. Reach out to us through the form below, and we'll get back to you as soon as possible.</p>
-        <ul>
-            <li>Email: <a href="mailto:contact@kikikreations.com">contact@kikikreations.com</a></li>
-            <li>Phone: (123) 456-7890</li>
-            <li>Social Media: Follow us on <a href="#">Instagram</a>, <a href="#">Facebook</a>, and <a href="#">Twitter</a>.</li>
-        </ul>
-    </section>
-    <footer>
-        <p>&copy; 2024 KikiKreations. All rights reserved.</p>
-    </footer>
+
+    <main>
+        <section class="hero">
+            <div>
+                <div class="pill">New · Conquering the Kitchen</div>
+                <h1>Turn fridge chaos into dinner clarity.</h1>
+                <p>Capture your fridge and pantry, upload, and let AI rescue your weeknights with fast, low-waste meal ideas.</p>
+                <div class="actions">
+                    <a class="cta" href="#kitchen-app">Start with your photos →</a>
+                    <span class="muted">No signup. Built for busy households.</span>
+                </div>
+            </div>
+            <div class="hero-list">
+                <div class="hero-card">
+                    <strong>1) Snap</strong>
+                    <p>Take a clear photo of your fridge shelves.</p>
+                </div>
+                <div class="hero-card">
+                    <strong>2) Snap</strong>
+                    <p>Do the same for your pantry staples.</p>
+                </div>
+                <div class="hero-card">
+                    <strong>3) Upload</strong>
+                    <p>AI suggests meals, shopping gaps, and prep steps.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="kitchen-app">
+            <div class="badge">Conquering the Kitchen</div>
+            <h2>Built for everyday tasks that actually get done</h2>
+            <p>Stop wondering what to make. With two quick photos—your fridge and pantry—the app drafts recipes, leftovers plans, and a mini shopping list to close any gaps.</p>
+
+            <div class="steps">
+                <div class="card">
+                    <div><span class="step-num">1</span><strong>Take photos</strong></div>
+                    <p>Good light, straight-on shots make detection quick and accurate.</p>
+                </div>
+                <div class="card">
+                    <div><span class="step-num">2</span><strong>Upload & label</strong></div>
+                    <p>Add a quick note (e.g., “need to use spinach + feta”).</p>
+                </div>
+                <div class="card">
+                    <div><span class="step-num">3</span><strong>Get ideas</strong></div>
+                    <p>See recipes, time estimates, and waste-saving swaps instantly.</p>
+                </div>
+            </div>
+
+            <div class="grid" style="margin-top: 16px;">
+                <div class="card">
+                    <div class="badge">Uploads</div>
+                    <div class="upload-area">
+                        <div class="upload">
+                            <strong>Fridge photo</strong>
+                            <input type="file" id="fridgeInput" accept="image/*">
+                            <div class="status" id="fridgeStatus">No photo yet.</div>
+                        </div>
+                        <div class="upload">
+                            <strong>Pantry photo</strong>
+                            <input type="file" id="pantryInput" accept="image/*">
+                            <div class="status" id="pantryStatus">No photo yet.</div>
+                        </div>
+                    </div>
+                    <p class="muted">Tip: Open doors fully and avoid glare. If you spot something the camera might miss, add it below.</p>
+                    <textarea class="note-area" id="notes" placeholder="Add quick inventory notes (e.g., cherry tomatoes, feta, tortillas, basil)..."></textarea>
+                    <div class="actions" style="margin-top: 12px;">
+                        <button class="cta" id="suggestBtn">Preview recipe ideas</button>
+                        <span class="muted" id="insight">Waiting for uploads…</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="badge">Why it works</div>
+                    <ul class="checklist">
+                        <li>✅ Reduce food waste with “use-first” recommendations.</li>
+                        <li>✅ Close gaps with a 3-item mini shopping list.</li>
+                        <li>✅ Fast prep filters for weeknights under 25 minutes.</li>
+                        <li>✅ Batch-cook cues so leftovers get planned, not lost.</li>
+                        <li>✅ Save time—two photos replace 20 minutes of guesswork.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="flow">
+            <div class="badge">Simple Flow</div>
+            <h2>What happens after you upload</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="tag">Detect</div>
+                    <p>AI scans your fridge and pantry photos to detect ingredients and freshness cues (like wilting greens).</p>
+                </div>
+                <div class="card">
+                    <div class="tag">Plan</div>
+                    <p>We prioritize “use-first” items, then balance quick wins (under 25 minutes) with one batch cook for leftovers.</p>
+                </div>
+                <div class="card">
+                    <div class="tag">Prevent waste</div>
+                    <p>Smart swaps help you finish partial ingredients so nothing hides in the back and spoils.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ideas">
+            <div class="badge">Ideas snapshot</div>
+            <h2>Recipe ideas generated from your uploads</h2>
+            <p class="muted">Preview below updates when you click “Preview recipe ideas.”</p>
+            <div class="suggestions" id="suggestions">
+                <div class="suggestion">
+                    <strong>Veggie-loaded sheet pan tacos</strong>
+                    <p>Roast mixed veggies, add beans, finish with tortillas and a lime yogurt drizzle.</p>
+                    <div class="tag">15 min prep</div>
+                </div>
+                <div class="suggestion">
+                    <strong>Creamy herb pasta</strong>
+                    <p>Use any soft herbs, half & half, and parmesan; add spinach before serving.</p>
+                    <div class="tag">20 min prep</div>
+                </div>
+                <div class="suggestion">
+                    <strong>Warm pantry grain bowl</strong>
+                    <p>Base of rice or quinoa with roasted chickpeas, jarred peppers, and a lemon-tahini dressing.</p>
+                    <div class="tag">Make once, eat twice</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="badge">Contact</div>
+            <h2>Ready to build this for your kitchen—or your customers?</h2>
+            <p>We design thoughtful, day-to-day tools that make routine tasks effortless. Tell us about your workflow and we’ll tailor the experience.</p>
+            <ul>
+                <li>Email: <a href="mailto:contact@kikikreations.com">contact@kikikreations.com</a></li>
+                <li>Phone: (123) 456-7890</li>
+                <li>Social: Instagram · Facebook · Twitter</li>
+            </ul>
+            <p class="footer">© 2024 KikiKreations. Designed for calm, capable days.</p>
+        </section>
+    </main>
+
+    <script>
+        const fridgeInput = document.getElementById('fridgeInput');
+        const pantryInput = document.getElementById('pantryInput');
+        const fridgeStatus = document.getElementById('fridgeStatus');
+        const pantryStatus = document.getElementById('pantryStatus');
+        const suggestBtn = document.getElementById('suggestBtn');
+        const insight = document.getElementById('insight');
+        const suggestionsEl = document.getElementById('suggestions');
+        const notesEl = document.getElementById('notes');
+
+        const recipes = [
+            { title: "Sheet-pan veggie tacos", desc: "Roast peppers, onions, and any stray veggies; add beans and finish with tortillas + salsa.", tags: ["15 min prep", "use-first veggies"], ingredients: ["pepper","onion","tortilla","bean","tomato","corn","lime"] },
+            { title: "Spinach & feta pasta", desc: "Sauté garlic, toss in spinach, feta, and pasta water for a creamy, no-cream sauce.", tags: ["20 min prep", "low waste"], ingredients: ["spinach","feta","pasta","garlic","olive oil"] },
+            { title: "Pantry grain bowl", desc: "Base of rice or quinoa with roasted chickpeas, jarred peppers, and lemon-tahini.", tags: ["make once, eat twice"], ingredients: ["rice","quinoa","chickpea","pepper","tahini","lemon"] },
+            { title: "Herby egg muffins", desc: "Whisk eggs with leftover herbs and veggies; bake in a muffin tin for grab-and-go.", tags: ["prep ahead"], ingredients: ["egg","herb","spinach","tomato","cheese"] },
+            { title: "Crispy tofu stir-fry", desc: "Use any veggies, a quick soy-garlic sauce, and rice. Finish with sesame seeds.", tags: ["25 min"], ingredients: ["tofu","soy","garlic","rice","broccoli","carrot"] },
+            { title: "Miso butter veggies", desc: "Toss veggies in miso butter, roast, and serve with noodles or rice.", tags: ["under 20 min"], ingredients: ["miso","butter","noodle","rice","mushroom"] },
+            { title: "Tomato basil flatbread", desc: "Use naan or tortillas, add tomatoes, basil, mozzarella; bake until bubbly.", tags: ["12 min"], ingredients: ["tomato","basil","tortilla","cheese"] },
+            { title: "Chickpea tuna salad", desc: "Mix chickpeas with mayo, mustard, celery; pile onto greens or toast.", tags: ["no-cook"], ingredients: ["chickpea","celery","greens","bread"] },
+        ];
+
+        const updateStatus = (input, statusEl) => {
+            const file = input.files[0];
+            if (!file) {
+                statusEl.textContent = "No photo yet.";
+                statusEl.style.color = "#445";
+                return;
+            }
+            const size = (file.size / 1024 / 1024).toFixed(2);
+            statusEl.textContent = `Loaded: ${file.name} (${size} MB)`;
+            statusEl.style.color = "#3f5235";
+        };
+
+        fridgeInput.addEventListener('change', () => {
+            updateStatus(fridgeInput, fridgeStatus);
+            updateInsight();
+        });
+
+        pantryInput.addEventListener('change', () => {
+            updateStatus(pantryInput, pantryStatus);
+            updateInsight();
+        });
+
+        const normalizeWords = (text) => {
+            return text
+                .toLowerCase()
+                .replace(/[^a-z0-9,\\s]/g, " ")
+                .split(/[,\\s]+/)
+                .filter(Boolean);
+        };
+
+        const updateInsight = () => {
+            const fridgeReady = fridgeInput.files.length > 0;
+            const pantryReady = pantryInput.files.length > 0;
+            if (fridgeReady && pantryReady) {
+                insight.textContent = "Great! Hit preview to see AI-ready suggestions.";
+                insight.style.color = "#3f5235";
+            } else if (fridgeReady || pantryReady) {
+                insight.textContent = "Add the second photo for best matches (fridge + pantry).";
+                insight.style.color = "#9b5d00";
+            } else {
+                insight.textContent = "Waiting for uploads…";
+                insight.style.color = "#5d6a59";
+            }
+        };
+
+        const renderSuggestions = (items) => {
+            suggestionsEl.innerHTML = "";
+            items.slice(0, 6).forEach(item => {
+                const div = document.createElement("div");
+                div.className = "suggestion";
+                div.innerHTML = `
+                    <strong>${item.title}</strong>
+                    <p>${item.desc}</p>
+                    <div class="tag">${item.tags[0]}</div>
+                `;
+                suggestionsEl.appendChild(div);
+            });
+        };
+
+        const scoreRecipes = (keywords) => {
+            return recipes
+                .map(recipe => {
+                    const matches = recipe.ingredients.filter(ing => keywords.some(k => k.includes(ing) || ing.includes(k)));
+                    return { ...recipe, score: matches.length };
+                })
+                .sort((a, b) => b.score - a.score);
+        };
+
+        suggestBtn.addEventListener('click', () => {
+            const keywords = normalizeWords(notesEl.value);
+            const scored = scoreRecipes(keywords);
+            const hasUploads = fridgeInput.files.length + pantryInput.files.length > 0;
+
+            if (keywords.length === 0 && !hasUploads) {
+                insight.textContent = "Add at least one note or photo so we can tailor ideas.";
+                insight.style.color = "#9b5d00";
+                return;
+            }
+
+            const meaningful = scored.filter(r => r.score > 0);
+            if (meaningful.length > 0) {
+                renderSuggestions(meaningful);
+                insight.textContent = "Ideas tuned to your notes—adjust them anytime.";
+                insight.style.color = "#3f5235";
+            } else {
+                renderSuggestions(recipes);
+                insight.textContent = "Showing versatile, low-waste staples. Add notes for tighter matches.";
+                insight.style.color = "#3f5235";
+            }
+        });
+
+        updateInsight();
+    </script>
 </body>
 </html>
